@@ -1,7 +1,5 @@
 {
 	"region": "",
-	"azureTenantId": "",
-	"azureSubscriptionId": "",
-	"azureApplicationId": "",
-	"azureApplicationKey": ""
+	"awsAccessKeyId": "",
+	"awsAccessKeySecret": ""
 }
