@@ -1,45 +1,45 @@
 {
   "parameters": {
-    "KeyName": {
+    "keyName": {
       "value": ""
     },
-    "VPCId": {
+    "vpcId": {
       "value": ""
     },
-    "SubnetId": {
+    "subnetId": {
       "value": ""
     },
-    "InstanceType": {
+    "instanceType": {
       "value": ""
     },
-    "AvailabilityZone": {
+    "availabilityZone": {
       "value": ""
     },
-    "BaseAmiId": {
+    "baseAmiId": {
       "value": ""
     },
-    "DomainAdminUsername": {
+    "domainAdminUsername": {
       "value": ""
     },
-    "DomainAdminPassword": {
+    "domainAdminPassword": {
       "value": ""
     },
-    "DomainName": {
+    "domainName": {
       "value": ""
     },
-    "VirtualMachineName": {
+    "virtualMachineName": {
       "value": ""
     },
-    "VolumeSize": {
+    "volumeSize": {
       "value": ""
     },
-    "VolumeType": {
+    "volumeType": {
       "value": ""
     },
-    "SecurityGroupName": {
+    "securityGroupName": {
       "value": ""
     },
-    "DNSServerIPAddress": {
+    "dnsServerIPAddress": {
       "value": ""
     }
   }
