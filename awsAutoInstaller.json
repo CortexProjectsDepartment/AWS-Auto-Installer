@@ -136,8 +136,8 @@
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
                       "Add-Computer -ComputerName $currentHostname -NewName $newHostname -DomainName $domain -Credential $credential -Restart -Force\n}",
                       "#Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
-					  "Remove-Item -Path c:\\cfn\\scripts\\installIIS.ps1 -Force -ErrorAction SilentlyContinue",
-					  "[Environment]::Exit(0)\n"
+                      "Remove-Item -Path c:\\cfn\\scripts\\installIIS.ps1 -Force -ErrorAction SilentlyContinue",
+                      "[Environment]::Exit(0)\n"
                     ]
                   ]
                 },
@@ -171,10 +171,10 @@
                         "Ref": "AWS::StackId"
                       },
                       " --region ",
-					  {
+                      {
                         "Ref": "AWS::Region"
                       },
-					  ""
+                      ""
                     ]
                   ]
                 }
@@ -251,6 +251,26 @@
           "Timeout": "PT1H"
         }
       }
+    }
+  },
+  "Outputs": {
+    "publicIpAddress": {
+      "Value": {
+        "Fn::GetAtt": [
+          "EC2Instance",
+          "PublicIp"
+        ]
+      },
+      "Description": "Server's PublicIp Address"
+    },
+    "privateIpAddress": {
+      "Value": {
+        "Fn::GetAtt": [
+          "EC2Instance",
+          "PrivateIp"
+        ]
+      },
+      "Description": "Server's PrivateIp Address"
     }
   }
 }
