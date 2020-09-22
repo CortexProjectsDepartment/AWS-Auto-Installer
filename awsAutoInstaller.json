@@ -261,7 +261,7 @@
           "PublicIp"
         ]
       },
-      "Description": "Server's PublicIp Address"
+      "Description": "Server's Public IPv4 Address"
     },
     "privateIpAddress": {
       "Value": {
@@ -270,7 +270,7 @@
           "PrivateIp"
         ]
       },
-      "Description": "Server's PrivateIp Address"
+      "Description": "Server's Private IPv4 Address"
     }
   }
 }
