@@ -1,58 +1,46 @@
-[
-  {
-    "ParameterKey": "KeyName",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "VPCId",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "SubnetId",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "InstanceType",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "AvailabilityZone",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "BaseAmiId",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "DomainAdminUsername",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "DomainAdminPassword",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "DomainName",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "VirtualMachineName",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "VolumeSize",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "VolumeType",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "SecurityGroupName",
-    "ParameterValue": ""
-  },
-  {
-    "ParameterKey": "DNSServerIPAddress",
-    "ParameterValue": ""
+{
+  "Parameters": {
+    "KeyName": {
+      "Value": ""
+    },
+    "VPCId": {
+      "Value": ""
+    },
+    "SubnetId": {
+      "Value": ""
+    },
+    "InstanceType": {
+      "Value": ""
+    },
+    "AvailabilityZone": {
+      "Value": ""
+    },
+    "BaseAmiId": {
+      "Value": ""
+    },
+    "DomainAdminUsername": {
+      "Value": ""
+    },
+    "DomainAdminPassword": {
+      "Value": ""
+    },
+    "DomainName": {
+      "Value": ""
+    },
+    "VirtualMachineName": {
+      "Value": ""
+    },
+    "VolumeSize": {
+      "Value": ""
+    },
+    "VolumeType": {
+      "Value": ""
+    },
+    "SecurityGroupName": {
+      "Value": ""
+    },
+    "DNSServerIPAddress": {
+      "Value": ""
+    }
   }
-]
+}
