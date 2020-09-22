@@ -1,46 +1,46 @@
 {
   "Parameters": {
     "KeyName": {
-      "Value": ""
+      "value": ""
     },
     "VPCId": {
-      "Value": ""
+      "value": ""
     },
     "SubnetId": {
-      "Value": ""
+      "value": ""
     },
     "InstanceType": {
-      "Value": ""
+      "value": ""
     },
     "AvailabilityZone": {
-      "Value": ""
+      "value": ""
     },
     "BaseAmiId": {
-      "Value": ""
+      "value": ""
     },
     "DomainAdminUsername": {
-      "Value": ""
+      "value": ""
     },
     "DomainAdminPassword": {
-      "Value": ""
+      "value": ""
     },
     "DomainName": {
-      "Value": ""
+      "value": ""
     },
     "VirtualMachineName": {
-      "Value": ""
+      "value": ""
     },
     "VolumeSize": {
-      "Value": ""
+      "value": ""
     },
     "VolumeType": {
-      "Value": ""
+      "value": ""
     },
     "SecurityGroupName": {
-      "Value": ""
+      "value": ""
     },
     "DNSServerIPAddress": {
-      "Value": ""
+      "value": ""
     }
   }
 }
