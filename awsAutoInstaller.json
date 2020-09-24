@@ -136,9 +136,9 @@
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
                       "Add-Computer -ComputerName $currentHostname -NewName $newHostname -DomainName $domain -Credential $credential -Restart -Force\n}\n",
                       "If((Get-ExecutionPolicy) -ne 'Bypass'){\n",
-                      "Enable-PSRemoting -Force\n",
-                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
+                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force -Scope LocalMachine\n",
                       "}\n",
+                      "Enable-PSRemoting -Force\n",
                       "If((hostname) -ne '",
                       {
                         "Ref": "virtualMachineName"
@@ -184,8 +184,7 @@
                       "Install-WindowsFeature -Name Web-Dyn-Compression\n",
                       "Install-WindowsFeature -Name Web-Http-Errors\n",
                       "Install-WindowsFeature -Name Web-Mgmt-Service\n",
-                      "Remove-Item -Path c:\\cfn\\scripts\\joindomainandinstallIIS.ps1 -Force -ErrorAction SilentlyContinue\n",
-                      "[Environment]::Exit(0)\n"
+                      "Remove-Item -Path c:\\cfn\\scripts\\joindomainandinstallIIS.ps1 -Force -ErrorAction SilentlyContinue\n"
                     ]
                   ]
                 }
@@ -213,7 +212,7 @@
                   "Fn::Join": [
                     "",
                     [
-                      "cfn-signal.exe -e $LastExitCode --resource EC2Instance --stack ",
+                      "cfn-signal.exe -e 0 --resource EC2Instance --stack ",
                       {
                         "Ref": "AWS::StackId"
                       },
