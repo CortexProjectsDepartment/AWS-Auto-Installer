@@ -114,25 +114,6 @@
                         "Ref": "dnsServerIPAddress"
                       },
                       "', '8.8.8.8')\n",
-                      "## Join domain\n\n",
-                      "if(!(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain){",
-                      "$username = '",
-                      {
-                        "Ref": "domainAdminUsername"
-                      },
-                      "'\n",
-                      "$password = '",
-                      {
-                        "Ref": "domainAdminPassword"
-                      },
-                      "' | ConvertTo-SecureString -asPlainText -Force\n",
-                      "$domain = '",
-                      {
-                        "Ref": "domainName"
-                      },
-                      "'\n",
-                      "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
-                      "Add-Computer -DomainName $domain -Credential $credential -Restart -Force\n}\n",
                       "If((hostname) -ne '",
                       {
                         "Ref": "virtualMachineName"
@@ -159,6 +140,25 @@
                       },
                       "' -Force -Restart -DomainCredential $credential\n",
                       "}\n",
+                      "## Join domain\n\n",
+                      "if(!(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain){",
+                      "$username = '",
+                      {
+                        "Ref": "domainAdminUsername"
+                      },
+                      "'\n",
+                      "$password = '",
+                      {
+                        "Ref": "domainAdminPassword"
+                      },
+                      "' | ConvertTo-SecureString -asPlainText -Force\n",
+                      "$domain = '",
+                      {
+                        "Ref": "domainName"
+                      },
+                      "'\n",
+                      "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
+                      "Add-Computer -DomainName $domain -Credential $credential -Restart -Force\n}\n",
                       "Install-WindowsFeature -Name Web-Static-Content\n",
                       "Install-WindowsFeature -Name Web-Default-Doc\n",
                       "Install-WindowsFeature -Name Web-Dir-Browsing\n",
