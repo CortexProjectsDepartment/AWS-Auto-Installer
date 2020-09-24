@@ -98,7 +98,7 @@
           },
           "createPSFile": {
             "files": {
-              "c:\\cfn\\scripts\\installIIS.ps1": {
+              "c:\\cfn\\scripts\\joindomainandinstallIIS.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
@@ -107,41 +107,73 @@
                       "$adapter = Get-NetAdapter -Name 'Ethernet*'\n",
                       "Set-DNSClientServerAddress -InterfaceAlias $adapter.Name -ServerAddresses ('",
                       {
-                        "Ref": "dnsServerIPAddress"
+                        "Ref": "DNSServerIPAddress"
                       },
                       "', '8.8.8.8')\n",
                       "## Join domain\n\n",
                       "if(!(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain){",
                       "$username = '",
                       {
-                        "Ref": "domainAdminUsername"
+                        "Ref": "DomainAdminUsername"
                       },
                       "'\n",
                       "$password = '",
                       {
-                        "Ref": "domainAdminPassword"
+                        "Ref": "DomainAdminPassword"
                       },
                       "' | ConvertTo-SecureString -asPlainText -Force\n",
                       "$domain = '",
                       {
-                        "Ref": "domainName"
+                        "Ref": "DomainName"
                       },
                       "'\n",
                       "$currentHostname = hostname\n",
                       "$newHostname = '",
                       {
-                        "Ref": "virtualMachineName"
+                        "Ref": "VirtualMachineName"
                       },
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
-                      "Add-Computer -ComputerName $currentHostname -NewName $newHostname -domainName $domain -Credential $credential -Restart -Force\n}",
-                      "#Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
-                      "Remove-Item -Path c:\\cfn\\scripts\\installIIS.ps1 -Force -ErrorAction SilentlyContinue",
+                      "Add-Computer -ComputerName $currentHostname -NewName $newHostname -DomainName $domain -Credential $credential -Restart -Force\n}\n",
+                      "If((Get-ExecutionPolicy) -ne 'Bypass'){\n",
+                      "Enable-PSRemoting -Force\n",
+                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
+                      "}\n",
+                      "If((hostname) -ne '",
+                      {
+                        "Ref": "VirtualMachineName"
+                      },
+                      "'){\n",
+                      "Rename-Computer -NewName ",
+                      {
+                        "Ref": "VirtualMachineName"
+                      },
+                      "\n",
+                      "}\n",
+                      "Install-WindowsFeature -Name Web-Static-Content\n",
+                      "Install-WindowsFeature -Name Web-Default-Doc\n",
+                      "Install-WindowsFeature -Name Web-Dir-Browsing\n",
+                      "Install-WindowsFeature -Name Web-Http-Errors\n",
+                      "Install-WindowsFeature -Name Web-Asp-Net45\n",
+                      "Install-WindowsFeature -Name Web-Net-Ext45\n",
+                      "Install-WindowsFeature -Name Web-ISAPI-Ext\n",
+                      "Install-WindowsFeature -Name Web-ISAPI-Filter\n",
+                      "Install-WindowsFeature -Name Web-Http-Logging\n",
+                      "Install-WindowsFeature -Name Web-Request-Monitor\n",
+                      "Install-WindowsFeature -Name Web-Windows-Auth\n",
+                      "Install-WindowsFeature -Name Web-Filtering\n",
+                      "Install-WindowsFeature -Name Web-Stat-Compression\n",
+                      "Install-WindowsFeature -Name Web-Mgmt-Console\n",
+                      "Install-WindowsFeature -Name Web-Websockets\n",
+                      "Install-WindowsFeature -Name Web-Http-Redirect\n",
+                      "Install-WindowsFeature -Name Web-Dyn-Compression\n",
+                      "Install-WindowsFeature -Name Web-Http-Errors\n",
+                      "Install-WindowsFeature -Name Web-Mgmt-Service\n",
+                      "Remove-Item -Path c:\\cfn\\scripts\\joindomainandinstallIIS.ps1 -Force -ErrorAction SilentlyContinue\n",
                       "[Environment]::Exit(0)\n"
                     ]
                   ]
-                },
-                "waitAfterCompletion": "0"
+                }
               }
             }
           },
