@@ -103,9 +103,6 @@
                   "Fn::Join": [
                     "",
                     [
-                      "If((Get-ExecutionPolicy) -ne 'Bypass'){\n",
-                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
-                      "}\n",
                       "Enable-PSRemoting -Force\n",
                       "## Set DNS server\n\n",
                       "$adapter = Get-NetAdapter -Name 'Ethernet*'\n",
