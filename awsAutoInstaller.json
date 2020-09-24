@@ -184,7 +184,7 @@
                   "Fn::Join": [
                     "",
                     [
-                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\installIIS.ps1"
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\joindomainandinstallIIS.ps1"
                     ]
                   ]
                 }
