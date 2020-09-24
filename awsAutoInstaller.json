@@ -144,11 +144,26 @@
                         "Ref": "virtualMachineName"
                       },
                       "'){\n",
+                      "$username = '",
+					  {
+                        "Ref": "domainName"
+                      },
+					  "\\",
+                      {
+                        "Ref": "domainAdminUsername"
+                      },
+                      "'\n",
+                      "$password = '",
+                      {
+                        "Ref": "domainAdminPassword"
+                      },
+                      "' | ConvertTo-SecureString -asPlainText -Force\n",
+                      "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
                       "Rename-Computer -NewName '",
                       {
                         "Ref": "virtualMachineName"
                       },
-                      "' -Force -Restart\n",
+                      "' -Force -Restart -DomainCredential $credential\n",
                       "}\n",
                       "Install-WindowsFeature -Name Web-Static-Content\n",
                       "Install-WindowsFeature -Name Web-Default-Doc\n",
