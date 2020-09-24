@@ -204,10 +204,10 @@
         "ImageId": {
           "Ref": "baseAmiId"
         },
-        "instanceType": {
+        "InstanceType": {
           "Ref": "instanceType"
         },
-        "keyName": {
+        "KeyName": {
           "Ref": "keyName"
         },
         "NetworkInterfaces": [
