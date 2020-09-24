@@ -107,7 +107,7 @@
                       "$adapter = Get-NetAdapter -Name 'Ethernet*'\n",
                       "Set-DNSClientServerAddress -InterfaceAlias $adapter.Name -ServerAddresses ('",
                       {
-                        "Ref": "DNSServerIPAddress"
+                        "Ref": "dnsServerIPAddress"
                       },
                       "', '8.8.8.8')\n",
                       "## Join domain\n\n",
