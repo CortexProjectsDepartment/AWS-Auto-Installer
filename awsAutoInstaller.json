@@ -103,6 +103,10 @@
                   "Fn::Join": [
                     "",
                     [
+                      "If((Get-ExecutionPolicy) -ne 'Bypass'){\n",
+                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force -Scope LocalMachine\n",
+                      "}\n",
+                      "Enable-PSRemoting -Force\n",
                       "## Set DNS server\n\n",
                       "$adapter = Get-NetAdapter -Name 'Ethernet*'\n",
                       "Set-DNSClientServerAddress -InterfaceAlias $adapter.Name -ServerAddresses ('",
@@ -135,10 +139,6 @@
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
                       "Add-Computer -ComputerName $currentHostname -NewName $newHostname -DomainName $domain -Credential $credential -Restart -Force\n}\n",
-                      "If((Get-ExecutionPolicy) -ne 'Bypass'){\n",
-                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force -Scope LocalMachine\n",
-                      "}\n",
-                      "Enable-PSRemoting -Force\n",
                       "If((hostname) -ne '",
                       {
                         "Ref": "virtualMachineName"
