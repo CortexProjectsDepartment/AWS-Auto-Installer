@@ -1,64 +1,64 @@
 {
   "Description": "Create an EC2 instance by AWS CloudFormation",
   "Parameters": {
-    "KeyName": {
+    "keyName": {
       "MinLength": 1,
-      "Type": "AWS::EC2::KeyPair::KeyName"
+      "Type": "AWS::EC2::KeyPair::keyName"
     },
-    "VPCId": {
+    "vpcId": {
       "Type": "AWS::EC2::VPC::Id"
     },
-    "SubnetId": {
+    "subnetId": {
       "Type": "AWS::EC2::Subnet::Id"
     },
-    "InstanceType": {
+    "instanceType": {
       "Type": "String",
       "Default": "t2.micro"
     },
-    "AvailabilityZone": {
+    "availabilityZone": {
       "Type": "String"
     },
-    "BaseAmiId": {
+    "baseAmiId": {
       "Default": "ami-0ee25530d3bd7ef9c",
       "Type": "String"
     },
-    "DomainAdminUsername": {
+    "domainAdminUsername": {
       "Description": "User name for the account that will be added as Domain Administrator. This is separate from the default \"Administrator\" account",
       "Type": "String",
       "Default": "installer"
     },
-    "DomainAdminPassword": {
+    "domainAdminPassword": {
       "NoEcho": "true",
       "Description": "The Windows administrator account password",
       "Type": "String",
       "MinLength": "8",
       "MaxLength": "41"
     },
-    "DomainName": {
+    "domainName": {
       "Description": "Fully qualified domain name (FQDN) of the forest root domain",
       "Type": "String",
       "Default": "test.com"
     },
-    "VirtualMachineName": {
+    "virtualMachineName": {
       "Description": "Netbios name for virtual machine",
       "Type": "String",
       "Default": "test"
     },
-    "VolumeSize": {
+    "volumeSize": {
       "Description": "Volume size of virtual machine",
       "Type": "String",
       "Default": "32"
     },
-    "VolumeType": {
+    "volumeType": {
       "Description": "Volume type of virtual machine",
       "Type": "String",
       "Default": "gp2"
     },
-    "SecurityGroupName": {
+    "securityGroupName": {
       "Description": "Name of security group to be created",
       "Type": "String"
     },
-    "DNSServerIPAddress": {
+    "dnsServerIPAddress": {
       "Description": "IPv4 Address of DNS server",
       "Type": "String"
     }
@@ -68,7 +68,7 @@
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
         "GroupName": {
-          "Ref": "SecurityGroupName"
+          "Ref": "securityGroupName"
         },
         "SecurityGroupIngress": [
           {
@@ -80,8 +80,8 @@
           }
         ],
         "GroupDescription": "Security Group for demo server",
-        "VpcId": {
-          "Ref": "VPCId"
+        "vpcId": {
+          "Ref": "vpcId"
         }
       }
     },
@@ -107,34 +107,34 @@
                       "$adapter = Get-NetAdapter -Name 'Ethernet*'\n",
                       "Set-DNSClientServerAddress -InterfaceAlias $adapter.Name -ServerAddresses ('",
                       {
-                        "Ref": "DNSServerIPAddress"
+                        "Ref": "dnsServerIPAddress"
                       },
                       "', '8.8.8.8')\n",
                       "## Join domain\n\n",
                       "if(!(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain){",
                       "$username = '",
                       {
-                        "Ref": "DomainAdminUsername"
+                        "Ref": "domainAdminUsername"
                       },
                       "'\n",
                       "$password = '",
                       {
-                        "Ref": "DomainAdminPassword"
+                        "Ref": "domainAdminPassword"
                       },
                       "' | ConvertTo-SecureString -asPlainText -Force\n",
                       "$domain = '",
                       {
-                        "Ref": "DomainName"
+                        "Ref": "domainName"
                       },
                       "'\n",
                       "$currentHostname = hostname\n",
                       "$newHostname = '",
                       {
-                        "Ref": "VirtualMachineName"
+                        "Ref": "virtualMachineName"
                       },
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
-                      "Add-Computer -ComputerName $currentHostname -NewName $newHostname -DomainName $domain -Credential $credential -Restart -Force\n}",
+                      "Add-Computer -ComputerName $currentHostname -NewName $newHostname -domainName $domain -Credential $credential -Restart -Force\n}",
                       "#Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
                       "Remove-Item -Path c:\\cfn\\scripts\\installIIS.ps1 -Force -ErrorAction SilentlyContinue",
                       "[Environment]::Exit(0)\n"
@@ -184,38 +184,38 @@
         }
       },
       "Properties": {
-        "AvailabilityZone": {
-          "Ref": "AvailabilityZone"
+        "availabilityZone": {
+          "Ref": "availabilityZone"
         },
         "BlockDeviceMappings": [
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
               "DeleteOnTermination": "true",
-              "VolumeSize": {
-                "Ref": "VolumeSize"
+              "volumeSize": {
+                "Ref": "volumeSize"
               },
-              "VolumeType": {
-                "Ref": "VolumeType"
+              "volumeType": {
+                "Ref": "volumeType"
               }
             }
           }
         ],
         "ImageId": {
-          "Ref": "BaseAmiId"
+          "Ref": "baseAmiId"
         },
-        "InstanceType": {
-          "Ref": "InstanceType"
+        "instanceType": {
+          "Ref": "instanceType"
         },
-        "KeyName": {
-          "Ref": "KeyName"
+        "keyName": {
+          "Ref": "keyName"
         },
         "NetworkInterfaces": [
           {
             "Description": "Primary network interface",
             "DeviceIndex": "0",
-            "SubnetId": {
-              "Ref": "SubnetId"
+            "subnetId": {
+              "Ref": "subnetId"
             },
             "AssociatePublicIpAddress": true,
             "GroupSet": [
