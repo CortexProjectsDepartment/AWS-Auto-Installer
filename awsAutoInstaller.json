@@ -3,7 +3,7 @@
   "Parameters": {
     "keyName": {
       "MinLength": 1,
-      "Type": "AWS::EC2::KeyPair::keyName"
+      "Type": "AWS::EC2::KeyPair::KeyName"
     },
     "vpcId": {
       "Type": "AWS::EC2::VPC::Id"
