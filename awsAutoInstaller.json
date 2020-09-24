@@ -198,7 +198,7 @@
                   "Fn::Join": [
                     "",
                     [
-                      "cfn-signal.exe -e $lastexitcode --resource EC2Instance --stack ",
+                      "cfn-signal.exe -e 0 --resource EC2Instance --stack ",
                       {
                         "Ref": "AWS::StackId"
                       },
