@@ -1,13 +1,13 @@
 {
  "parameters": {
   "keyName": {
-   "value": "arunmkeypair"
+   "value": ""
   },
   "vpcId": {
-   "value": "vpc-0eea3f6547f889320"
+   "value": ""
   },
   "subnetId": {
-   "value": "vpc-0eea3f6547f889320"
+   "value": ""
   },
   "instanceType": {
    "value": ""
