@@ -104,7 +104,7 @@
                     "",
                     [
                       "If((Get-ExecutionPolicy) -ne 'Bypass'){\n",
-                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force -Scope LocalMachine\n",
+                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force\n",
                       "}\n",
                       "Enable-PSRemoting -Force\n",
                       "## Set DNS server\n\n",
