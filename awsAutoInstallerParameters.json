@@ -1,18 +1,46 @@
 {
-  "parameters": {
-    "keyName": "",
-    "vpcId": "",
-    "subnetId": "",
-    "instanceType": "",
-    "availabilityZone": "",
-    "baseAmiId": "",
-    "domainAdminUsername": "",
-    "domainAdminPassword": "",
-    "domainName": "",
-    "virtualMachineName": "",
-    "volumeSize": "",
-    "volumeType": "",
-    "securityGroupName": "",
-    "dnsServerIPAddress": ""
+ "parameters": {
+  "keyName": {
+   "value": "arunmkeypair"
+  },
+  "vpcId": {
+   "value": "vpc-0eea3f6547f889320"
+  },
+  "subnetId": {
+   "value": "vpc-0eea3f6547f889320"
+  },
+  "instanceType": {
+   "value": ""
+  },
+  "availabilityZone": {
+   "value": ""
+  },
+  "baseAmiId": {
+   "value": ""
+  },
+  "domainAdminUsername": {
+   "value": ""
+  },
+  "domainAdminPassword": {
+   "value": ""
+  },
+  "domainName": {
+   "value": ""
+  },
+  "virtualMachineName": {
+   "value": ""
+  },
+  "volumeSize": {
+   "value": ""
+  },
+  "volumeType": {
+   "value": ""
+  },
+  "securityGroupName": {
+   "value": ""
+  },
+  "dnsServerIPAddress": {
+   "value": ""
   }
+ }
 }
