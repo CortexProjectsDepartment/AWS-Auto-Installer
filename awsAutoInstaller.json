@@ -114,23 +114,23 @@
                       "if(!(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain){",
                       "$username = '",
                       {
-                        "Ref": "DomainAdminUsername"
+                        "Ref": "domainAdminUsername"
                       },
                       "'\n",
                       "$password = '",
                       {
-                        "Ref": "DomainAdminPassword"
+                        "Ref": "domainAdminPassword"
                       },
                       "' | ConvertTo-SecureString -asPlainText -Force\n",
                       "$domain = '",
                       {
-                        "Ref": "DomainName"
+                        "Ref": "domainName"
                       },
                       "'\n",
                       "$currentHostname = hostname\n",
                       "$newHostname = '",
                       {
-                        "Ref": "VirtualMachineName"
+                        "Ref": "virtualMachineName"
                       },
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
@@ -141,12 +141,12 @@
                       "}\n",
                       "If((hostname) -ne '",
                       {
-                        "Ref": "VirtualMachineName"
+                        "Ref": "virtualMachineName"
                       },
                       "'){\n",
                       "Rename-Computer -NewName ",
                       {
-                        "Ref": "VirtualMachineName"
+                        "Ref": "virtualMachineName"
                       },
                       "\n",
                       "}\n",
