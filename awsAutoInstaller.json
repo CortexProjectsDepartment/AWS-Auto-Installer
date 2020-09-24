@@ -80,7 +80,7 @@
           }
         ],
         "GroupDescription": "Security Group for demo server",
-        "vpcId": {
+        "VpcId": {
           "Ref": "vpcId"
         }
       }
