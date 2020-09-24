@@ -145,10 +145,10 @@
                       },
                       "'){\n",
                       "$username = '",
-					  {
+                      {
                         "Ref": "domainName"
                       },
-					  "\\",
+                      "\\",
                       {
                         "Ref": "domainAdminUsername"
                       },
