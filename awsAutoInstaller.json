@@ -148,7 +148,7 @@
                       {
                         "Ref": "virtualMachineName"
                       },
-                      "' -Force\n",
+                      "' -Force -Restart\n",
                       "}\n",
                       "Install-WindowsFeature -Name Web-Static-Content\n",
                       "Install-WindowsFeature -Name Web-Default-Doc\n",
