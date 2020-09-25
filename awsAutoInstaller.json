@@ -92,7 +92,12 @@
           "configSets": {
             "config": [
               "createPSFiles",
-              "executePSFiles",
+              "setExecutionPolicy",
+              "enablePSRemoting",
+              "updateDNSServer",
+              "joinDomain",
+              "renameComputer",
+              "installIIS",
               "finalise"
             ]
           },
@@ -226,7 +231,7 @@
               }
             }
           },
-          "executePSFiles": {
+          "setExecutionPolicy": {
             "commands": {
               "setExecutionPolicy": {
                 "command": {
@@ -237,7 +242,11 @@
                     ]
                   ]
                 }
-              },
+              }
+            }
+          },
+          "enablePSRemoting": {
+            "commands": {
               "enablePSRemoting": {
                 "command": {
                   "Fn::Join": [
@@ -247,7 +256,11 @@
                     ]
                   ]
                 }
-              },
+              }
+            }
+          },
+          "updateDNSServer": {
+            "commands": {
               "updateDNSServer": {
                 "command": {
                   "Fn::Join": [
@@ -257,7 +270,11 @@
                     ]
                   ]
                 }
-              },
+              }
+            }
+          },
+          "joinDomain": {
+            "commands": {
               "joinDomain": {
                 "command": {
                   "Fn::Join": [
@@ -267,7 +284,11 @@
                     ]
                   ]
                 }
-              },
+              }
+            }
+          },
+          "renameComputer": {
+            "commands": {
               "renameComputer": {
                 "command": {
                   "Fn::Join": [
@@ -277,7 +298,11 @@
                     ]
                   ]
                 }
-              },
+              }
+            }
+          },
+          "installIIS": {
+            "commands": {
               "installIIS": {
                 "command": {
                   "Fn::Join": [
