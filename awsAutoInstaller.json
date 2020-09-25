@@ -129,8 +129,9 @@
                       },
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
+                      "Start-Sleep 10\n"
                       "Add-Computer -DomainName $domain -Credential $credential -Restart -Force\n",
-                      "Start-Sleep 60 \n}\n",
+                      "Start-Sleep 60\n}\n",
                       "If((hostname) -ne '",
                       {
                         "Ref": "virtualMachineName"
@@ -156,7 +157,7 @@
                         "Ref": "virtualMachineName"
                       },
                       "' -Force -Restart -DomainCredential $credential\n",
-                      "Start-Sleep 60 \n}\n",
+                      "Start-Sleep 60\n}\n",
                       "Install-WindowsFeature -Name Web-Static-Content\n",
                       "Install-WindowsFeature -Name Web-Default-Doc\n",
                       "Install-WindowsFeature -Name Web-Dir-Browsing\n",
