@@ -129,7 +129,7 @@
                       },
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
-                      "Start-Sleep 10\n"
+                      "Start-Sleep 10\n",
                       "Add-Computer -DomainName $domain -Credential $credential -Restart -Force\n",
                       "Start-Sleep 60\n}\n",
                       "If((hostname) -ne '",
