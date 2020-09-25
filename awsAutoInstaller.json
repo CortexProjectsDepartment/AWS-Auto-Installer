@@ -91,27 +91,53 @@
         "AWS::CloudFormation::Init": {
           "configSets": {
             "config": [
-              "createPSFile",
-              "executePSFile",
+              "createPSFiles",
+              "executePSFiles",
               "finalise"
             ]
           },
-          "createPSFile": {
+          "createPSFiles": {
             "files": {
-              "c:\\cfn\\scripts\\joindomainandinstallIIS.ps1": {
+              "c:\\cfn\\scripts\\setExecutionPolicy.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
                     [
-                      "Enable-PSRemoting -Force\n",
-                      "## Set DNS server\n\n",
+                      "Set-ExecutionPolicy -ExecutionPolicy Bypass -Force"
+                    ]
+                  ]
+                }
+              },
+              "c:\\cfn\\scripts\\enablePSRemoting.ps1": {
+                "content": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "Enable-PSRemoting -Force"
+                    ]
+                  ]
+                }
+              },
+              "c:\\cfn\\scripts\\updateDNSServer.ps1": {
+                "content": {
+                  "Fn::Join": [
+                    "",
+                    [
                       "$adapter = Get-NetAdapter -Name 'Ethernet*'\n",
                       "Set-DNSClientServerAddress -InterfaceAlias $adapter.Name -ServerAddresses ('",
                       {
                         "Ref": "dnsServerIPAddress"
                       },
-                      "', '8.8.8.8')\n",
-                      "## Join domain\n\n",
+                      "', '8.8.8.8')"
+                    ]
+                  ]
+                }
+              },
+              "c:\\cfn\\scripts\\joinDomain.ps1": {
+                "content": {
+                  "Fn::Join": [
+                    "",
+                    [
                       "if(!(Get-WmiObject -Class Win32_ComputerSystem).PartOfDomain){",
                       "$username = '",
                       {
@@ -129,9 +155,17 @@
                       },
                       "'\n",
                       "$credential = New-Object System.Management.Automation.PSCredential($username, $password)\n",
-                      "Start-Sleep 10\n",
                       "Add-Computer -DomainName $domain -Credential $credential -Restart -Force\n",
-                      "Start-Sleep 60\n}\n",
+                      "}"
+                    ]
+                  ]
+                }
+              },
+              "c:\\cfn\\scripts\\renameComputer.ps1": {
+                "content": {
+                  "Fn::Join": [
+                    "",
+                    [
                       "If((hostname) -ne '",
                       {
                         "Ref": "virtualMachineName"
@@ -157,7 +191,16 @@
                         "Ref": "virtualMachineName"
                       },
                       "' -Force -Restart -DomainCredential $credential\n",
-                      "Start-Sleep 60\n}\n",
+                      "}"
+                    ]
+                  ]
+                }
+              },
+              "c:\\cfn\\scripts\\installIIS.ps1": {
+                "content": {
+                  "Fn::Join": [
+                    "",
+                    [
                       "Install-WindowsFeature -Name Web-Static-Content\n",
                       "Install-WindowsFeature -Name Web-Default-Doc\n",
                       "Install-WindowsFeature -Name Web-Dir-Browsing\n",
@@ -176,22 +219,71 @@
                       "Install-WindowsFeature -Name Web-Http-Redirect\n",
                       "Install-WindowsFeature -Name Web-Dyn-Compression\n",
                       "Install-WindowsFeature -Name Web-Http-Errors\n",
-                      "Install-WindowsFeature -Name Web-Mgmt-Service\n",
-                      "Remove-Item -Path c:\\cfn\\scripts\\joindomainandinstallIIS.ps1 -Force -ErrorAction SilentlyContinue\n"
+                      "Install-WindowsFeature -Name Web-Mgmt-Service"
                     ]
                   ]
                 }
               }
             }
           },
-          "executePSFile": {
+          "executePSFiles": {
             "commands": {
+              "setExecutionPolicy": {
+                "command": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\setExecutionPolicy.ps1"
+                    ]
+                  ]
+                }
+              },
+              "enablePSRemoting": {
+                "command": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\enablePSRemoting.ps1"
+                    ]
+                  ]
+                }
+              },
+              "updateDNSServer": {
+                "command": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\updateDNSServer.ps1"
+                    ]
+                  ]
+                }
+              },
+              "joinDomain": {
+                "command": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\joinDomain.ps1"
+                    ]
+                  ]
+                }
+              },
+              "renameComputer": {
+                "command": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\renameComputer.ps1"
+                    ]
+                  ]
+                }
+              },
               "installIIS": {
                 "command": {
                   "Fn::Join": [
                     "",
                     [
-                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\joindomainandinstallIIS.ps1"
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\installIIS.ps1"
                     ]
                   ]
                 }
