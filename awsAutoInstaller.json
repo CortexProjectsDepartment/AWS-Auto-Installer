@@ -93,11 +93,12 @@
             "config": [
               "createPSFiles",
               "setExecutionPolicy",
-              "enablePSRemoting",
-              "updateDNSServer",
-              "joinDomain",
-              "renameComputer",
-              "installIIS",
+			  "enablePSRemoting",
+			  "updateDNSServer",
+			  "joinDomain",
+			  "renameComputer",
+			  "installIIS",
+			  "cleanup",
               "finalise"
             ]
           },
@@ -113,7 +114,7 @@
                   ]
                 }
               },
-              "c:\\cfn\\scripts\\enablePSRemoting.ps1": {
+			  "c:\\cfn\\scripts\\enablePSRemoting.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
@@ -123,7 +124,7 @@
                   ]
                 }
               },
-              "c:\\cfn\\scripts\\updateDNSServer.ps1": {
+			  "c:\\cfn\\scripts\\updateDNSServer.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
@@ -138,7 +139,7 @@
                   ]
                 }
               },
-              "c:\\cfn\\scripts\\joinDomain.ps1": {
+			  "c:\\cfn\\scripts\\joinDomain.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
@@ -166,7 +167,7 @@
                   ]
                 }
               },
-              "c:\\cfn\\scripts\\renameComputer.ps1": {
+			  "c:\\cfn\\scripts\\renameComputer.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
@@ -201,7 +202,7 @@
                   ]
                 }
               },
-              "c:\\cfn\\scripts\\installIIS.ps1": {
+			  "c:\\cfn\\scripts\\installIIS.ps1": {
                 "content": {
                   "Fn::Join": [
                     "",
@@ -228,6 +229,16 @@
                     ]
                   ]
                 }
+              },
+			  "c:\\cfn\\scripts\\cleanup.ps1": {
+                "content": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "Remove-Item c:\\cfn\\scripts -Recurse -Force"
+                    ]
+                  ]
+                }
               }
             }
           },
@@ -244,7 +255,7 @@
                 }
               }
             }
-          },
+         },
           "enablePSRemoting": {
             "commands": {
               "enablePSRemoting": {
@@ -258,7 +269,7 @@
                 }
               }
             }
-          },
+         },
           "updateDNSServer": {
             "commands": {
               "updateDNSServer": {
@@ -272,7 +283,7 @@
                 }
               }
             }
-          },
+         },
           "joinDomain": {
             "commands": {
               "joinDomain": {
@@ -286,7 +297,7 @@
                 }
               }
             }
-          },
+         },
           "renameComputer": {
             "commands": {
               "renameComputer": {
@@ -300,7 +311,7 @@
                 }
               }
             }
-          },
+         },
           "installIIS": {
             "commands": {
               "installIIS": {
@@ -314,7 +325,21 @@
                 }
               }
             }
-          },
+         },
+          "cleanup": {
+            "commands": {
+              "cleanup": {
+                "command": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "powershell.exe -ExecutionPolicy RemoteSigned -Command c:\\cfn\\scripts\\cleanup.ps1"
+                    ]
+                  ]
+                }
+              }
+            }
+         },
           "finalise": {
             "commands": {
               "signal-success": {
